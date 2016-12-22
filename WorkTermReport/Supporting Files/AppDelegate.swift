@@ -16,6 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let defaults = UserDefaults.standard
+        if UIDevice.current.userInterfaceIdiom == .pad && defaults.string(forKey: Constants.deviceIdiomKey) != "" {
+            defaults.setValue(Constants.deviceTypePad, forKey: Constants.deviceIdiomKey)
+        } else if UIDevice.current.userInterfaceIdiom == .phone && defaults.string(forKey: Constants.deviceIdiomKey) != "" {
+            defaults.setValue(Constants.deviceTypePhone, forKey: Constants.deviceIdiomKey)
+        }
+        
         return true
     }
 
