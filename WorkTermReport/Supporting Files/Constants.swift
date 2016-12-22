@@ -14,5 +14,6 @@ struct Constants {
     static let deviceTypePad = "PAD"
     static let deviceTypePhone = "PHONE"
     
+    static let normalCollectionViewIdentifier = "normalCollectionViewIdentifier"
     
 }

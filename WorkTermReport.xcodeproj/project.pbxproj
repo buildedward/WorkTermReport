@@ -10,6 +10,7 @@
 		3E3FBC971E0C355800878EEB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FBC961E0C355800878EEB /* Constants.swift */; };
 		3E3FBC9B1E0C3DF600878EEB /* NormalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FBC991E0C3DF600878EEB /* NormalCollectionViewCell.swift */; };
 		3E3FBC9C1E0C3DF600878EEB /* NormalCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3FBC9A1E0C3DF600878EEB /* NormalCollectionViewCell.xib */; };
+		3E3FBC9E1E0C40A000878EEB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FBC9D1E0C40A000878EEB /* Extensions.swift */; };
 		3E56F6591E0C1AE400D35C86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E56F6581E0C1AE400D35C86 /* AppDelegate.swift */; };
 		3E56F65B1E0C1AE400D35C86 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E56F65A1E0C1AE400D35C86 /* HomeViewController.swift */; };
 		3E56F65E1E0C1AE400D35C86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E56F65C1E0C1AE400D35C86 /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 		3E3FBC961E0C355800878EEB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3E3FBC991E0C3DF600878EEB /* NormalCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NormalCollectionViewCell.swift; path = "Custom Views/NormalCollectionViewCell.swift"; sourceTree = "<group>"; };
 		3E3FBC9A1E0C3DF600878EEB /* NormalCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NormalCollectionViewCell.xib; path = "Custom Views/NormalCollectionViewCell.xib"; sourceTree = "<group>"; };
+		3E3FBC9D1E0C40A000878EEB /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3E56F6551E0C1AE400D35C86 /* WorkTermReport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkTermReport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E56F6581E0C1AE400D35C86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E56F65A1E0C1AE400D35C86 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 				3E56F65F1E0C1AE400D35C86 /* Assets.xcassets */,
 				3E56F6641E0C1AE400D35C86 /* Info.plist */,
 				3E3FBC961E0C355800878EEB /* Constants.swift */,
+				3E3FBC9D1E0C40A000878EEB /* Extensions.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E3FBC9E1E0C40A000878EEB /* Extensions.swift in Sources */,
 				3E56F65B1E0C1AE400D35C86 /* HomeViewController.swift in Sources */,
 				3E3FBC9B1E0C3DF600878EEB /* NormalCollectionViewCell.swift in Sources */,
 				3E56F6591E0C1AE400D35C86 /* AppDelegate.swift in Sources */,
@@ -309,6 +313,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = NFJBTLRDU7;
 				INFOPLIST_FILE = "$(SRCROOT)/WorkTermReport/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edwardliu.WorkTermReport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -322,6 +327,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = NFJBTLRDU7;
 				INFOPLIST_FILE = "$(SRCROOT)/WorkTermReport/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edwardliu.WorkTermReport;
 				PRODUCT_NAME = "$(TARGET_NAME)";

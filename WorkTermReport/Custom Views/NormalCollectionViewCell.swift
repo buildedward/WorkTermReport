@@ -14,5 +14,9 @@ class NormalCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
+    class func instanceFromNib() -> NormalCollectionViewCell {
+        let nib = UINib(nibName: "NormalCollectionViewCell", bundle: nil)
+        return nib.instantiate(withOwner: self, options: nil).first as! NormalCollectionViewCell
+    }
 }
