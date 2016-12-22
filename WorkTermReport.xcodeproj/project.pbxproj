@@ -16,6 +16,7 @@
 		3E56F65E1E0C1AE400D35C86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E56F65C1E0C1AE400D35C86 /* Main.storyboard */; };
 		3E56F6601E0C1AE400D35C86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E56F65F1E0C1AE400D35C86 /* Assets.xcassets */; };
 		3E56F6631E0C1AE400D35C86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E56F6611E0C1AE400D35C86 /* LaunchScreen.storyboard */; };
+		3EC2205F1E0C6F07006EE368 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC2205E1E0C6F07006EE368 /* UserData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		3E56F65F1E0C1AE400D35C86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E56F6621E0C1AE400D35C86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E56F6641E0C1AE400D35C86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3EC2205E1E0C6F07006EE368 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				3E56F6641E0C1AE400D35C86 /* Info.plist */,
 				3E3FBC961E0C355800878EEB /* Constants.swift */,
 				3E3FBC9D1E0C40A000878EEB /* Extensions.swift */,
+				3EC2205E1E0C6F07006EE368 /* UserData.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EC2205F1E0C6F07006EE368 /* UserData.swift in Sources */,
 				3E3FBC9E1E0C40A000878EEB /* Extensions.swift in Sources */,
 				3E56F65B1E0C1AE400D35C86 /* HomeViewController.swift in Sources */,
 				3E3FBC9B1E0C3DF600878EEB /* NormalCollectionViewCell.swift in Sources */,

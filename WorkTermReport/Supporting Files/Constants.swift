@@ -15,5 +15,6 @@ struct Constants {
     static let deviceTypePhone = "PHONE"
     
     static let normalCollectionViewIdentifier = "normalCollectionViewIdentifier"
+    static let maxValue = 10000
     
 }
