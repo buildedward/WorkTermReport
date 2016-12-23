@@ -6,10 +6,11 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Logger-->
+        <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="HomeViewController" customModule="WorkTermReport" customModuleProvider="target" sceneMemberID="viewController">
@@ -21,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NFJ-Kp-Xno">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFJ-Kp-Xno">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
                                     <barButtonItem title="Edit" id="IE4-4E-3KE">
@@ -36,10 +37,11 @@
                                         </connections>
                                     </barButtonItem>
                                 </items>
+                                <color key="barTintColor" red="0.68627450980392157" green="0.71372549019607845" blue="0.71764705882352942" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RbG-sK-dVu">
                                 <rect key="frame" x="0.0" y="64" width="375" height="559"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="KYt-ev-orO">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -48,21 +50,43 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bpf-gc-Tr2">
+                                <rect key="frame" x="130.5" y="155" width="115.5" height="24"/>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In Logger, you can create counters for whatever you like." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nf4-qf-gqn">
+                                <rect key="frame" x="55" y="189" width="265.5" height="51"/>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nf4-qf-gqn" secondAttribute="trailing" constant="30" id="9iX-z4-kZQ"/>
+                            <constraint firstItem="Bpf-gc-Tr2" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.5" id="AJQ-LG-Kp7"/>
                             <constraint firstItem="NFJ-Kp-Xno" firstAttribute="top" secondItem="RbG-sK-dVu" secondAttribute="bottom" id="DuB-ub-sYc"/>
                             <constraint firstItem="RbG-sK-dVu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="JPs-Y5-W1w"/>
+                            <constraint firstItem="nf4-qf-gqn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="JvT-XG-9YT"/>
+                            <constraint firstItem="nf4-qf-gqn" firstAttribute="top" secondItem="Bpf-gc-Tr2" secondAttribute="bottom" constant="10" id="XYM-3i-JbT"/>
                             <constraint firstItem="NFJ-Kp-Xno" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ZQH-C4-meZ"/>
+                            <constraint firstItem="nf4-qf-gqn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dyp-8R-0fR"/>
+                            <constraint firstItem="Bpf-gc-Tr2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="f9N-g8-oAK"/>
                             <constraint firstAttribute="trailing" secondItem="RbG-sK-dVu" secondAttribute="trailing" id="sCj-04-E7c"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="NFJ-Kp-Xno" secondAttribute="bottom" id="syd-vz-7HG"/>
                             <constraint firstItem="RbG-sK-dVu" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="wNU-Q6-dhi"/>
                             <constraint firstAttribute="trailing" secondItem="NFJ-Kp-Xno" secondAttribute="trailing" id="yb1-Xv-ylL"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Logger" id="Im9-6F-zOm"/>
+                    <navigationItem key="navigationItem" id="Im9-6F-zOm"/>
                     <connections>
                         <outlet property="collectionView" destination="RbG-sK-dVu" id="JuG-AN-ohA"/>
+                        <outlet property="deleteToolbarButton" destination="dux-fN-H0r" id="lRM-nA-A5y"/>
+                        <outlet property="editToolbarButton" destination="IE4-4E-3KE" id="KOJ-Av-tRZ"/>
+                        <outlet property="emptySubtitle" destination="nf4-qf-gqn" id="A10-dj-77u"/>
+                        <outlet property="emptyTitle" destination="Bpf-gc-Tr2" id="yxd-SR-bGr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -74,13 +98,14 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YCC-8a-5BZ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cgu-wm-xfu">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Cgu-wm-xfu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.64643657933452903" green="0.67711378163487879" blue="0.68641829307262714" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="jHB-NC-xZW"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="1eP-8N-AI7"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KcK-EJ-x1J" userLabel="First Responder" sceneMemberID="firstResponder"/>

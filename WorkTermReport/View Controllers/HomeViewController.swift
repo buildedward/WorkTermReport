@@ -12,9 +12,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
     // Outlets
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var deleteToolbarButton: UIBarButtonItem!
+    @IBOutlet weak var editToolbarButton: UIBarButtonItem!
+    @IBOutlet weak var emptyTitle: UILabel!
+    @IBOutlet weak var emptySubtitle: UILabel!
     
     // State variables
-    private var deviceType = UserDefaults.standard.string(forKey: Constants.deviceIdiomKey)
+    private var deviceType = UserDefaults.standard.string(forKey: Constants.deviceIdiomKey) ?? Constants.deviceTypePhone
     
     private var screenSize: CGRect {
         get {
@@ -53,11 +57,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     // Other variables
+    private var deletionArray: [Int] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view, typically from a nib.
         
+//        let defaults = UserDefaults.standard
+//        defaults.set(nil, forKey: "USER_DATA_TITLES")
+//        defaults.set(nil, forKey: "USER_DATA_COUNTS")
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         
@@ -68,6 +77,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         let addButton = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         self.navigationItem.leftBarButtonItem = addButton
+        let clearButton = UIBarButtonItem.init(barButtonSystemItem: .trash, target: self, action: #selector(clearAllTapped))
+        self.navigationItem.rightBarButtonItem = clearButton
+        self.navigationItem.title = "LOGGER"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,13 +96,24 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let normalCell = self.collectionView.dequeueReusableCell(withReuseIdentifier: Constants.normalCollectionViewIdentifier, for: indexPath) as! NormalCollectionViewCell
         normalCell.layer.cornerRadius = 5
         let defaults = UserDefaults.standard
-        let countArray = defaults.array(forKey: "USER_DATA_COUNTS") as! [Int]
-        let count = countArray[indexPath.row]
-        normalCell.setLabel(title: self.userItems[indexPath.row], count: count, index: indexPath.row)
+        if let countArray = defaults.array(forKey: "USER_DATA_COUNTS") as? [Int] {
+            let count = countArray[indexPath.row]
+            normalCell.setLabel(title: self.userItems[indexPath.row], count: count, index: indexPath.row)
+        } else {
+            normalCell.setLabel(title: self.userItems[indexPath.row], index: indexPath.row)
+        }
+        normalCell.beginEditing(style: self.currentSelectionStyle, deviceType: self.deviceType)
         return normalCell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if self.userItems.count == 0 {
+            self.emptyTitle.isHidden = false
+            self.emptySubtitle.isHidden = false
+        } else {
+            self.emptyTitle.isHidden = true
+            self.emptySubtitle.isHidden = true
+        }
         return self.userItems.count
     }
     
@@ -105,32 +128,53 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = self.collectionView.cellForItem(at: indexPath) as! NormalCollectionViewCell
         
-        let alert = UIAlertController.init(title: "New Item", message: "Pleae enter your desired item's new name:", preferredStyle: .alert)
-        alert.addTextField(configurationHandler: {
-            (textField) in
-            textField.placeholder = cell.label.text
-        })
-        
-        let okAction = UIAlertAction.init(title: "OK", style: .default, handler: {
-            (alertAction) in
-            let defaults = UserDefaults.standard
-            if let array = defaults.array(forKey: "USER_DATA_TITLES") {
-                if (alert.textFields?.first?.text?.isEmpty)! {
-                    return
-                }
-                var newTitleArray = array
-                newTitleArray[indexPath.row] = (alert.textFields?[0].text ?? "")
-                defaults.set(newTitleArray, forKey: "USER_DATA_TITLES")
-                self.collectionView.reloadData()
-            }
-        })
-        let cancelAction = UIAlertAction.init(title: "Cancel", style: .cancel, handler: {
-            (alertAction) in
+        if self.currentSelectionStyle == "none" {
             return
-        })
-        alert.addAction(cancelAction)
-        alert.addAction(okAction)
-        self.present(alert, animated: true, completion: nil)
+        } else if self.currentSelectionStyle == "edit" {
+            let alert = UIAlertController.init(title: "New Item", message: "Pleae enter your desired item's new name:", preferredStyle: .alert)
+            alert.addTextField(configurationHandler: {
+                (textField) in
+                textField.placeholder = cell.label.text
+            })
+            
+            let okAction = UIAlertAction.init(title: "OK", style: .default, handler: {
+                (alertAction) in
+                let defaults = UserDefaults.standard
+                if let array = defaults.array(forKey: "USER_DATA_TITLES") {
+                    if (alert.textFields?.first?.text?.isEmpty)! {
+                        return
+                    }
+                    var newTitleArray = array
+                    newTitleArray[indexPath.row] = (alert.textFields?[0].text ?? "")
+                    defaults.set(newTitleArray, forKey: "USER_DATA_TITLES")
+                    self.collectionView.reloadData()
+                }
+            })
+            let cancelAction = UIAlertAction.init(title: "Cancel", style: .cancel, handler: {
+                (alertAction) in
+                return
+            })
+            alert.addAction(cancelAction)
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
+        } else if self.currentSelectionStyle == "delete" {
+            if cell.setSelected() {
+                self.deletionArray.append(indexPath.row)
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell = self.collectionView.cellForItem(at: indexPath) as! NormalCollectionViewCell
+        if self.currentSelectionStyle == "delete" {
+            if !cell.setSelected() {
+                for (index, number) in deletionArray.enumerated() {
+                    if number == indexPath.row {
+                        deletionArray.remove(at: index)
+                    }
+                }
+            }
+        }
     }
     
     // Collection View Flow Layout Delegate
@@ -159,7 +203,49 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
     
+    func deleteSelected() {
+        if self.currentSelectionStyle == "delete" {
+            let defaults = UserDefaults.standard
+            self.deletionArray = self.deletionArray.sorted(by: >)
+            if let array = defaults.array(forKey: "USER_DATA_TITLES") {
+                var newTitleArray = array
+                var newCountArray = defaults.array(forKey: "USER_DATA_COUNTS")
+                for index in self.deletionArray {
+                    newTitleArray.remove(at: index)
+                    newCountArray?.remove(at: index)
+                }
+                if newTitleArray.count == 0 {
+                    defaults.set(nil, forKey: "USER_DATA_TITLES")
+                } else {
+                    defaults.set(newTitleArray, forKey: "USER_DATA_TITLES")
+                }
+                if newCountArray?.count == 0 {
+                    defaults.set(nil, forKey: "USER_DATA_COUNTS")
+                } else {
+                    defaults.set(newCountArray, forKey: "USER_DATA_COUNTS")
+                }
+                self.deletionArray = []
+                self.collectionView.reloadData()
+            }
+        }
+    }
+    
     // Actions
+    @IBAction func clearAllTapped(_ sender: AnyObject) {
+        let alert = UIAlertController.init(title: "Confirm", message: "Are you sure you want to delete all of your items?", preferredStyle: .alert)
+        let okAction = UIAlertAction.init(title: "OK", style: .default, handler: {
+            (alertAction) in
+            let defaults = UserDefaults.standard
+            defaults.set(nil, forKey: "USER_DATA_TITLES")
+            defaults.set(nil, forKey: "USER_DATA_COUNTS")
+            self.collectionView.reloadData()
+        })
+        let cancelAction = UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     @IBAction func addButtonTapped(_ sender: AnyObject) {
         print(#function)
         
@@ -210,16 +296,30 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
 
     @IBAction func editToolButtonTapped(_ sender: Any) {
-        self.collectionView.allowsSelection = true
+        self.collectionView.allowsSelection = self.currentSelectionStyle == "edit" ? false : true
         self.collectionView.allowsMultipleSelection = false
+        (sender as! UIBarButtonItem).title = self.currentSelectionStyle == "edit" ? "Edit" : "Finish Editing"
+        self.navigationItem.title = self.currentSelectionStyle == "edit" ? "LOGGER" : nil
+        self.navigationItem.prompt = self.currentSelectionStyle == "edit" ? nil : "Please select an item to edit."
+        self.navigationItem.leftBarButtonItem?.isEnabled = self.currentSelectionStyle == "edit" ? true : false
+        self.navigationItem.rightBarButtonItem?.isEnabled = self.currentSelectionStyle == "edit" ? true : false
+        self.deleteToolbarButton.isEnabled = self.currentSelectionStyle == "edit" ? true : false
         self.currentSelectionStyle = self.currentSelectionStyle == "edit" ? "none" : "edit"
+        self.collectionView.reloadData()
     }
     
     @IBAction func deleteToolButtonTapped(_ sender: Any) {
-        self.collectionView.allowsSelection = false
-        self.collectionView.allowsMultipleSelection = true
+        self.collectionView.allowsSelection = self.currentSelectionStyle == "delete" ? false : true
+        self.collectionView.allowsMultipleSelection = self.currentSelectionStyle == "delete" ? false : true
         (sender as! UIBarButtonItem).title = self.currentSelectionStyle == "delete" ? "Delete" : "Finish"
+        self.navigationItem.title = self.currentSelectionStyle == "delete" ? "LOGGER" : nil
+        self.navigationItem.prompt = self.currentSelectionStyle == "delete" ? nil : "Please select items to remove."
+        self.navigationItem.leftBarButtonItem?.isEnabled = self.currentSelectionStyle == "delete" ? true : false
+        self.navigationItem.rightBarButtonItem?.isEnabled = self.currentSelectionStyle == "delete" ? true : false
+        self.deleteSelected()
+        self.editToolbarButton.isEnabled = self.currentSelectionStyle == "delete" ? true : false
         self.currentSelectionStyle = self.currentSelectionStyle == "delete" ? "none" : "delete"
+        self.collectionView.reloadData()
     }
 }
 

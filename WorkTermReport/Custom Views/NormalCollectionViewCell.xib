@@ -29,7 +29,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.6705882353" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.6950503355704698" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="SbT-lO-Jd8" firstAttribute="top" secondItem="TFZ-yp-l42" secondAttribute="top" id="0Jr-OA-aa1"/>
                             <constraint firstAttribute="bottom" secondItem="SbT-lO-Jd8" secondAttribute="bottom" id="InV-g3-Rq1"/>
@@ -46,13 +46,13 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="87b-1w-h8N">
                         <rect key="frame" x="58" y="8" width="186" height="34"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4jd-eV-efW">
                         <rect key="frame" x="286" y="12" width="26" height="26"/>
-                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.69505033559999996" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="3"/>
                         <state key="normal" image="up">
                             <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -68,11 +68,11 @@
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5no-ND-bBy">
                         <rect key="frame" x="252" y="12" width="26" height="26"/>
-                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.69505033559999996" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="5no-ND-bBy" secondAttribute="height" multiplier="1:1" id="fbZ-W8-dO7"/>
                         </constraints>
-                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="3" maxX="0.0" maxY="0.0"/>
                         <state key="normal" image="down">
                             <color key="titleColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -88,7 +88,7 @@
                     </button>
                 </subviews>
             </view>
-            <color key="backgroundColor" red="0.57986778846153841" green="0.57986778846153841" blue="0.57986778846153841" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.0" green="0.49803921568627452" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="87b-1w-h8N" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="APk-Ir-dKW"/>
                 <constraint firstItem="5no-ND-bBy" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="12" id="GxZ-bP-1VN"/>
@@ -108,8 +108,10 @@
             </constraints>
             <size key="customSize" width="344" height="118"/>
             <connections>
+                <outlet property="counterBoxLeadingSpace" destination="ta5-wv-yp6" id="FAZ-T5-Cfp"/>
                 <outlet property="counterLabel" destination="SbT-lO-Jd8" id="Lnm-M1-bvL"/>
                 <outlet property="label" destination="87b-1w-h8N" id="eM7-Ap-DBH"/>
+                <outlet property="rightMostItemTrailingSpace" destination="hiR-yb-61u" id="V6M-B2-sSO"/>
             </connections>
             <point key="canvasLocation" x="172" y="85.5"/>
         </collectionViewCell>
